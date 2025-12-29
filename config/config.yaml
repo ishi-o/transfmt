@@ -1,0 +1,16 @@
+app:
+  name: "Transfmt"
+  port: 8080
+  secret_key: "dev-secret-2025-afiwoebfowabfowpefbwpf"
+user_setting:
+  fanyi:
+    default_source_lang: "auto"
+    default_target_lang: "zh"
+    default_backend: "yandex"
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  db: 0
+  pool_size: 10
+  session_ttl: 86400
