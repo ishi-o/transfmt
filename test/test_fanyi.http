@@ -1,0 +1,60 @@
+### 
+
+GET http://localhost:8080/api/fanyi/setting HTTP/1.1
+
+> {%
+    const cookieObj = response.headers.valuesOf('Set-Cookie');
+    const cookieValue = cookieObj.value[0].split(';')[0].trim();
+    client.global.set("session_cookie", cookieValue);
+%}
+
+
+### 
+
+GET http://localhost:8080/api/fanyi/setting HTTP/1.1
+Cookie: {{session_cookie}}
+
+
+### 
+
+POST http://localhost:8080/api/fanyi/setting/lang HTTP/1.1
+Content-Type: application/json
+Cookie: {{session_cookie}}
+
+{
+  "sourceLang": "auto",
+  "targetLang": "en"
+}
+
+
+### 
+
+POST http://localhost:8080/api/fanyi/setting/lang HTTP/1.1
+Content-Type: application/json
+Cookie: {{session_cookie}}
+
+{
+  "sourceLang": "zh",
+  "targetLang": "en"
+}
+
+
+### 
+
+POST http://localhost:8080/api/fanyi/ HTTP/1.1
+Content-Type: application/json
+Cookie: {{session_cookie}}
+
+"我现在叫你老师可以吗？"
+
+
+### 
+
+POST https://translate.yandex.net/api/v1/tr.json/translate HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+text=你好世界&
+lang=zh-en&
+srv=android&
+format=text&
+ucid=de305d8419e34b3c8c0a8d5a5b5f8a7d

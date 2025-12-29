@@ -2,7 +2,6 @@
 package redis
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -42,25 +41,4 @@ func Init() error {
 
 	SessionStore = store
 	return nil
-}
-
-func GetUserSetting(session sessions.Session) config.UserSetting {
-	if data, ok := session.Get("user_setting").([]byte); ok && len(data) > 0 {
-		var setting config.UserSetting
-		if json.Unmarshal(data, &setting) == nil {
-			return setting
-		}
-	}
-	defaultSetting := config.C.UserSetting
-	SaveUserSetting(session, defaultSetting)
-	return defaultSetting
-}
-
-func SaveUserSetting(session sessions.Session, setting config.UserSetting) error {
-	data, err := json.Marshal(setting)
-	if err != nil {
-		return err
-	}
-	session.Set("user_setting", data)
-	return session.Save()
 }
