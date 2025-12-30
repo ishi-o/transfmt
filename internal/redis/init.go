@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/redis"
-	"github.com/ishi-o/transfmt/config"
+	"github.com/ishi-o/transfmt/internal/config"
 )
 
 var SessionStore sessions.Store

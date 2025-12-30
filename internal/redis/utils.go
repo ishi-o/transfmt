@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/gin-contrib/sessions"
-	"github.com/ishi-o/transfmt/config"
+	"github.com/ishi-o/transfmt/internal/config"
 )
 
 func GetUserSetting(session sessions.Session) config.UserSetting {

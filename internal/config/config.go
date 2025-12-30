@@ -1,7 +1,9 @@
 // Package config
 package config
 
-import "github.com/spf13/viper"
+import (
+	"github.com/spf13/viper"
+)
 
 type FanyiConfig struct {
 	SourceLang string `mapstructure:"default_source_lang"`
@@ -28,6 +30,7 @@ type Config struct {
 		PoolSize   int    `mapstructure:"pool_size"`
 		SessionTTL int    `mapstructure:"session_ttl"`
 	}
+	Log ZapConfig `mapstructure:"log"`
 }
 
 var C Config
@@ -35,7 +38,7 @@ var C Config
 func Init() error {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath("./configs")
 	viper.AutomaticEnv()
 	if err := viper.ReadInConfig(); err != nil {
 		return err
